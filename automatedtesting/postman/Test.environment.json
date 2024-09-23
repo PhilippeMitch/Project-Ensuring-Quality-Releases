@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "url",
-			"value": "https://udacity-mitch-proj3-appservice.azurewebsites.net/api",
+			"value": "https://udacity-mitch-proj3-appservice-guhabccbapdybrcx.southcentralus-01.azurewebsites.net/api",
 			"enabled": true
 		},
 		{
