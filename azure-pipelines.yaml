@@ -209,11 +209,21 @@ stages:
               archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-jmeter-stress-html-report.zip'
 
           # JMeter report - Publish
-          - task: PublishPipelineArtifact@1
-            displayName: 'Publish JMeter logs'
-            inputs:
-              targetPath: '$(System.DefaultWorkingDirectory)'
-              artifact: drop-jmeter-report
+          # - task: PublishPipelineArtifact@1
+            # displayName: 'Publish JMeter logs'
+            # inputs:
+              # targetPath: '$(System.DefaultWorkingDirectory)'
+              # artifact: drop-jmeter-report
+
+          # JMeter report - Publish
+          - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-jmeter-performance-html-report.zip
+            displayName: 'Upload Package JMeter Performance Report'
+            artifact: drop-jmeter-performance-report
+
+          # JMeter report - Publish
+          - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-jmeter-stress-html-report.zip
+            displayName: 'Upload Package JMeter Stress Report'
+            artifact: drop-jmeter-stress-report
             
               
   #--------------------------------------------#  
