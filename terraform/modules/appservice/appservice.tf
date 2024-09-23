@@ -21,5 +21,6 @@ resource "azurerm_windows_web_app" "test" {
       current_stack  = "dotnet"
       dotnet_version = "v4.0"
     }
+}
 
 }
