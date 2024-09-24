@@ -96,19 +96,19 @@ terraform {
 5. Create a VM to use as an Agent
    In Azure Portal go to the Virtual machines page, select Create and then Azure virtual machine. The Create a virtual machine page opens.
    
-|                      Field	                  |                          Value                      |
-|-----------------------------------------------|-----------------------------------------------------|
-| Subscription                                  | Choose existing                                     |
-| Resource group                                | Choose existing                                     |
-| Virtual machine name                          | Type a name for your VM                             |
-| Availability options                          | No infrastructure redundency required               |
-| Region                                        | Select the region same that of the resource group   |
-| Image                                         | Ubuntu Server 22.04 LTS - Gen1                      |
-| Size                                          | Standard_DS1_v2                                     |
-| Authentication type                           | Password                                            |
-| Username                                      | Type a username                                     |
-| Password                                      | Type a password and confirm the password            |
-| Public inbound ports                          | Allow selected ports <br>Select inbound ports: SSH (22) |
+            |                      Field	                  |                          Value                      |
+            |-----------------------------------------------|-----------------------------------------------------|
+            | Subscription                                  | Choose existing                                     |
+            | Resource group                                | Choose existing                                     |
+            | Virtual machine name                          | Type a name for your VM                             |
+            | Availability options                          | No infrastructure redundency required               |
+            | Region                                        | Select the region same that of the resource group   |
+            | Image                                         | Ubuntu Server 22.04 LTS - Gen1                      |
+            | Size                                          | Standard_DS1_v2                                     |
+            | Authentication type                           | Password                                            |
+            | Username                                      | Type a username                                     |
+            | Password                                      | Type a password and confirm the password            |
+            | Public inbound ports                          | Allow selected ports <br>Select inbound ports: SSH (22) |
 
 6. Configure the Agent (VM)
    The agent VM will perform the pipeline jobs, such as building your code residing in Github and deploying it to the Azure services. This step will let you authenticate the agent via a Personal Access Token (PAT) generated from your DevOps account.
@@ -151,4 +151,31 @@ Navigate to the DevOps project, and select Pipeline and create a new one. You wi
   * Select - Select the Github repository containing the exercise starter code.
   * Configure - Choose the Existing Azure Pipelines YAML file option.
   * Click on the **Run** button
-![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/pipelines-done.png)
+
+### Environment Creation & Deployment
+* Terraform to apply Infrastructure as Code
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/terraform-init.png)
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/terraform-validate.png)
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/terraform-apply.png)
+  
+  Screenshot of the successful execution of the pipeline
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/pipelines-done.png)
+  
+* Jmeter Automated Testing
+  * Performance test
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/jmeter-performance-test.png)
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/jmeter-performance-test2.png)
+  * Stress test
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/jmeter-stress-test.png)
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/jmeter-stress-test2.png)
+
+* Postman Automated Testing
+  * Validation test
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/postman-validation-test.png)
+  * Regression test
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/regression-test.png)
+ 
+* API-Integration Test
+    ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/regression-test1.png)
+* 
+  
