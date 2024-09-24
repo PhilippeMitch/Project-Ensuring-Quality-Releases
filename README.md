@@ -61,10 +61,10 @@ chmod +x configure-tfstate-storage-account.sh
 ```bash
 terraform {
   backend "azurerm" {
-    storage_account_name = "tfstate60347593"
+    storage_account_name = "<the returned storage account name>"
     container_name       = "tfstate"
     key                  = "test.terraform.tfstate"
-    access_key           = "/u9Kubs6n/LcLL9Tgzz9Y1zdRtiQ75im0/4zt0b9Xvs2Dj4DqNKngj47hMBLdsJh9PFhGtjx5LDQ+AStm8PFKA=="
+    access_key           = "<the returned access key value>"
   }
 }
 ```
@@ -78,5 +78,77 @@ terraform {
     client_secret = "xxxxxxxxxxxx"
     tenant_id = "xxxxxxxxxxxx"
    ```
+### Azure DevOps Pipeline
+1. Go to https://dev.azure.com/ using Udacity provide account to create new AzureDevops project
+2. Install below extensions :
+   * [JMeter](https://marketplace.visualstudio.com/items?itemName=AlexandreGattiker.jmeter-tasks&targetId=625be685-7d04-4b91-8e92-0a3f91f6c3ac&utm_source=vstsproduct&utm_medium=ExtHubManageList)
+   ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/jmeter-extension.png)
+   * [PublishHTMLReports](https://marketplace.visualstudio.com/items?itemName=LakshayKaushik.PublishHTMLReports&targetId=625be685-7d04-4b91-8e92-0a3f91f6c3ac&utm_source=vstsproduct&utm_medium=ExtHubManageList)
+   ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/publish-html-report-extension.png)
+   * [Terraform](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.custom-terraform-tasks&targetId=625be685-7d04-4b91-8e92-0a3f91f6c3ac&utm_source=vstsproduct&utm_medium=ExtHubManageList)
+   ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/terraform-extension.png)
+3. Create a Service Connection
+   In Azure devops go to **Project Settings** > **Pipelines** > **Service Connection** > **Azure Resource Manager** > **Service principal(automatic)**
+4. Create an Agent Pool, and an Agent
+  In Azure DevOps go to **Project Settings** > **Agent pools** > **Add pool**
+   * For the Pool type choose *Self-Hosted*
+   * Type a name for the agent pool (e.g., myAgentPool)
+5. Create a VM to use as an Agent
+   In Azure Portal go to the Virtual machines page, select Create and then Azure virtual machine. The Create a virtual machine page opens.
+   
+|                      Field	                  |                          Value                      |
+|-----------------------------------------------|-----------------------------------------------------|
+| Subscription                                  | Choose existing                                     |
+| Resource group                                | Choose existing                                     |
+| Virtual machine name                          | Type a name for your VM                             |
+| Availability options                          | No infrastructure redundency required               |
+| Region                                        | Select the region same that of the resource group   |
+| Image                                         | Ubuntu Server 22.04 LTS - Gen1                      |
+| Size                                          | Standard_DS1_v2                                     |
+| Authentication type                           | Password                                            |
+| Username                                      | Type a username                                     |
+| Password                                      | Type a password and confirm the password            |
+| Public inbound ports                          | Allow selected ports <br>Select inbound ports: SSH (22) |
 
-
+6. Configure the Agent (VM)
+   The agent VM will perform the pipeline jobs, such as building your code residing in Github and deploying it to the Azure services. This step will let you authenticate the agent via a Personal Access Token (PAT) generated from your DevOps account.
+   * Run the following commands from an Azure cloud shell or terminal or command prompt. Replace the IP address as applicable to you.
+     ```bash
+     ssh username@17.37.97.22
+     ```
+     Accept the default prompts and provide the username and password as you have set up in the last step above.
+     * Install Docker
+       ```bash
+       sudo snap install docker
+       ```
+     * Configure the user user to run Docker.
+       ```bash
+       sudo groupadd docker
+      sudo usermod -aG docker $USER
+      exit
+     ```
+     You will have to log back in using the same SSH command
+7. Configure the Agent (VM) - Install Agent Services
+   Go back to the DevOps portal, and open the newly created Agent pool to add a new agent. Follow the instructions [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops)
+   ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/agent-pool-1.png)
+   In you Azure DevOps, navigate to Organization Settings > Agent Pools > myAgentPool and then select the Agents tab. Confirm that the self-hosted agent is online.
+   ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/agent-pool.png)
+8. Once your VM will be ready using the final pipeline, you will have to SSH log into the machine to run Selenium functional (UI) tests.
+  ```bash
+      ssh-keygen -t rsa
+      cat ~/.ssh/id_rsa.pub
+  ```
+Update the terraform/modules/vm/vm.tf
+```bash
+admin_ssh_key {
+  username   = "adminuser"
+  public_key = "<id_rsa.pub output>"
+}
+```
+9. Create a DevOps Pipeline
+Navigate to the DevOps project, and select Pipeline and create a new one. You will use the following steps:
+  * Connect - Choose the Github repository as the source code location.
+  * Select - Select the Github repository containing the exercise starter code.
+  * Configure - Choose the Existing Azure Pipelines YAML file option.
+  * Click on the **Run** button
+![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/pipelines-done.png)
