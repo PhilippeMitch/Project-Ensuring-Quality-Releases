@@ -182,6 +182,13 @@ Navigate to the DevOps project, and select Pipeline and create a new one. You wi
 * Selenium Testing
   ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/selenium1.png)
 
-# Deployed Application
+* Deployed Application
 ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/deploy-azure-web.png)
 ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/website.png)
+
+### Monitoring & Observability
+* Azure monitor
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/postman-logs.png)
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/alert-gmail4.png)
+  ![](https://github.com/PhilippeMitch/Project-Ensuring-Quality-Releases/blob/main/screenshots/alert-gmail-3.png)
+  
