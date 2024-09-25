@@ -47,7 +47,7 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform/environments/test'
         backendServiceArm: '$(azureServiceConnectionId)'
         backendAzureRmResourceGroupName: 'Azuredevops'
-        backendAzureRmStorageAccountName: 'tfstate60347593'
+        backendAzureRmStorageAccountName: 'tfstate3083916666'
         backendAzureRmContainerName: 'tfstate'
         backendAzureRmKey: 'test.terraform.tfstate'
 
@@ -288,11 +288,11 @@ stages:
                 mkdir -p $(System.DefaultWorkingDirectory)/log/selenium
                 sudo cp -f selenium.log $(System.DefaultWorkingDirectory)/log/selenium
                 
-        - task: PublishPipelineArtifact@1
-          displayName: Publish selenium logs
-          inputs:
-            targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium.log'
-            artifactName: 'drop-selenium-logs'
+          - task: PublishPipelineArtifact@1
+            displayName: Publish selenium logs
+            inputs:
+              targetPath: '$(System.DefaultWorkingDirectory)/log/selenium/selenium.log'
+              artifactName: 'drop-selenium-logs'
           
 
 
