@@ -5,6 +5,7 @@ provider "azurerm" {
   client_secret   = "${var.client_secret}"
   features {}
 }
+
 terraform {
   backend "azurerm" {
     storage_account_name = "tfstate165486651"
