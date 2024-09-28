@@ -1,11 +1,11 @@
 # Azure subscription vars
-subscription_id = "d06323f0-ffb0-484c-9e89-0ca5e1d58412"
-client_id = "a30ea6b0-db75-42e3-97b4-2b9096150b26"
-client_secret = "mA~8Q~AsiWCJ3-wrhE~sIfku-V-VsJy0pnpy-a6r"
+subscription_id = "44ada2e4-89f9-41cc-8efc-3cf76cd05c0c"
+client_id = "96ddc6c8-8b8d-49ca-bbf4-020e699c7e15"
+client_secret = "BD38Q~Cg8QEwxFKN8AIspIwPsGjbBbPNdrMaMa~d"
 tenant_id = "f958e84a-92b8-439f-a62d-4f45996b6d07"
 
 # Resource Group/Location
-location = "Australia Southeast"
+location = "South Central US"
 resource_group = "Azuredevops"
 application_type = "udacity-mitch-proj3"
 
