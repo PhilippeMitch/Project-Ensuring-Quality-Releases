@@ -289,6 +289,9 @@ stages:
                 sudo cp -f selenium.log $(System.DefaultWorkingDirectory)/log/selenium
 
                 # Display the log file directory
+                echo 'Directory'
+                pwd
+                echo 'find selenium.log in'
                 find . -name selenium.log
                 
           - task: PublishPipelineArtifact@1
