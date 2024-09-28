@@ -5,7 +5,7 @@ client_secret = "BD38Q~Cg8QEwxFKN8AIspIwPsGjbBbPNdrMaMa~d"
 tenant_id = "f958e84a-92b8-439f-a62d-4f45996b6d07"
 
 # Resource Group/Location
-location = "South Central US"
+location = "Australia Southeast"
 resource_group = "Azuredevops"
 application_type = "udacity-mitch-proj3"
 
