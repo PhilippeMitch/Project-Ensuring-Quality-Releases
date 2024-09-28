@@ -287,6 +287,9 @@ stages:
                 # create new directory 
                 mkdir -p $(System.DefaultWorkingDirectory)/log/selenium
                 sudo cp -f selenium.log $(System.DefaultWorkingDirectory)/log/selenium
+
+                # Display the log file directory
+                find . -name selenium.log
                 
           - task: PublishPipelineArtifact@1
             displayName: Publish selenium logs
